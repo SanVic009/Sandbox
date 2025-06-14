@@ -82,7 +82,7 @@ function runTesseractScript(scriptPath, args, callback){
     const pythonProcess = spawn('python', [scriptPath].concat(args));
 
     let data = ''
-    pythonProcess.stdount.on('data', (chunk) =>{
+    pythonProcess.stdout.on('data', (chunk) =>{
         data += chunk.toString();
     });
 
