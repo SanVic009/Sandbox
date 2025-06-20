@@ -1,4 +1,4 @@
-const dropArea = document.querySelector("#dropArea")
+export const dropArea = document.querySelector("#dropArea")
 
 export async function callTesseractScript(url, address){
     try{

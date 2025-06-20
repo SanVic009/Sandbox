@@ -23,8 +23,9 @@ body {
     display: flex;
     justify-content: center;
     align-content: center;
-    height: 1000px;
-    width: 1000px;
+    height: 500px;
+    width: 500px;
+    margin-top: 10px;
     background-color: rgba(13,244, 112, 0.2);
     /* background-color: aquamarine; */
 }

@@ -1,7 +1,7 @@
 export const form = document.querySelector('.form');
 export const button = document.querySelector('#submitButton');
 export const inputField = document.querySelector('#inputField');
-export const result = document.querySelector('#result');
+export const resultFactorial = document.querySelector('#result');
 
 console.log(form)
 
