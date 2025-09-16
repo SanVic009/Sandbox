@@ -1,7 +1,7 @@
 # audio files
-.wav
-.ogg
-.mp3
+*.wav
+*.ogg
+*.mp3
 
 # Logs
 logs
