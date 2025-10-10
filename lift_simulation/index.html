@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lift Simulation Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            gap: 100px;
+            align-items: flex-start;
+        }
+
+        .lift-shaft {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .floor {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+            gap: 15px;
+        }
+
+        .box {
+            width: 80px;
+            height: 60px;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .arrow-btn {
+            width: 40px;
+            height: 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.2s;
+            color: white;
+        }
+
+        .up-arrow {
+            background-color: #4CAF50;
+        }
+
+        .up-arrow:hover {
+            background-color: #45a049;
+        }
+
+        .down-arrow {
+            background-color: #f44336;
+        }
+
+        .down-arrow:hover {
+            background-color: #da190b;
+        }
+
+        .arrow-btn:active {
+            transform: scale(0.95);
+        }
+
+        .lift-title {
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .floor-container {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Stack -->
+        <div class="lift-shaft">
+            <div class="lift-title">BUTTONS</div>
+            <div class="floor-container">
+                <!-- Floor 10 -->
+                <div class="floor">
+                    <div class="box">10</div>
+                </div>
+                
+                <!-- Floor 9 -->
+                <div class="floor">
+                    <div class="box">9</div>
+                </div>
+                
+                <!-- Floor 8 -->
+                <div class="floor">
+                    <div class="box">8</div>
+                </div>
+                
+                <!-- Floor 7 -->
+                <div class="floor">
+                    <div class="box">7</div>
+                </div>
+                
+                <!-- Floor 6 -->
+                <div class="floor">
+                    <div class="box">6</div>
+                </div>
+                
+                <!-- Floor 5 -->
+                <div class="floor">
+                    <div class="box">5</div>
+                </div>
+                
+                <!-- Floor 4 -->
+                <div class="floor">
+                    <div class="box">4</div>
+                </div>
+                
+                <!-- Floor 3 -->
+                <div class="floor">
+                    <div class="box">3</div>
+                </div>
+                
+                <!-- Floor 2 -->
+                <div class="floor">
+                    <div class="box">2</div>
+                </div>
+                
+                <!-- Floor 1 -->
+                <div class="floor">
+                    <div class="box">1</div>
+                </div>
+                
+                <!-- Floor 0 -->
+                <div class="floor">
+                    <div class="box">0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Stack -->
+        <div class="lift-shaft">
+            <div class="lift-title">Lift Position</div>
+            <div class="floor-container">
+                <!-- Floor 10 -->
+                <div class="floor">
+                    <div class="box">10</div>
+                    <div class="controls">
+                        <button class="arrow-btn down-arrow">▼</button>
+                    </div>
+                </div>
+                
+                <!-- Floor 9 -->
+                <div class="floor">
+                    <div class="box">9</div>
+                    <div class="controls">
+                        <button class="arrow-btn up-arrow">▲</button>
+                        <button class="arrow-btn down-arrow">▼</button>
+                    </div>
+                </div>
+                
+                <!-- Floor 8 -->
+                <div class="floor">
+                    <div class="box">8</div>
+                    <div class="controls">
+                        <button class="arrow-btn up-arrow">▲</button>
+                        <button class="arrow-btn down-arrow">▼</button>
+                    </div>
+                </div>
+                
+                <!-- Floor 7 -->
+                <div class="floor">
+                    <div class="box">7</div>
+                    <div class="controls">
+                        <button class="arrow-btn up-arrow">▲</button>
+                        <button class="arrow-btn down-arrow">▼</button>
+                    </div>
+                </div>
+                
+                <!-- Floor 6 -->
+                <div class="floor">
+                    <div class="box">6</div>
+                    <div class="controls">
+                        <button class="arrow-btn up-arrow">▲</button>
+                        <button class="arrow-btn down-arrow">▼</button>
+                    </div>
+                </div>
+                
+                <!-- Floor 5 -->
+                <div class="floor">
+                    <div class="box">5</div>
+                    <div class="controls">
+                        <button class="arrow-btn up-arrow">▲</button>
+                        <button class="arrow-btn down-arrow">▼</button>
+                    </div>
+                </div>
+                
+                <!-- Floor 4 -->
+                <div class="floor">
+                    <div class="box">4</div>
+                    <div class="controls">
+                        <button class="arrow-btn up-arrow">▲</button>
+                        <button class="arrow-btn down-arrow">▼</button>
+                    </div>
+                </div>
+                
+                <!-- Floor 3 -->
+                <div class="floor">
+                    <div class="box">3</div>
+                    <div class="controls">
+                        <button class="arrow-btn up-arrow">▲</button>
+                        <button class="arrow-btn down-arrow">▼</button>
+                    </div>
+                </div>
+                
+                <!-- Floor 2 -->
+                <div class="floor">
+                    <div class="box">2</div>
+                    <div class="controls">
+                        <button class="arrow-btn up-arrow">▲</button>
+                        <button class="arrow-btn down-arrow">▼</button>
+                    </div>
+                </div>
+                
+                <!-- Floor 1 -->
+                <div class="floor">
+                    <div class="box">1</div>
+                    <div class="controls">
+                        <button class="arrow-btn up-arrow">▲</button>
+                        <button class="arrow-btn down-arrow">▼</button>
+                    </div>
+                </div>
+                
+                <!-- Floor 0 -->
+                <div class="floor">
+                    <div class="box">0</div>
+                    <div class="controls">
+                        <button class="arrow-btn up-arrow">▲</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
