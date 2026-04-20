@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File Upload Portal — Hero</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f8f9fb;
+      --surface: #ffffff;
+      --border: #e8ecf0;
+      --primary: #2563eb;
+      --primary-light: rgba(37, 99, 235, 0.08);
+      --text: #0f1117;
+      --text-2: #64748b;
+      --text-3: #94a3b8;
+      --success: #059669;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-lg: 0 20px 48px rgba(0,0,0,0.10), 0 8px 16px rgba(0,0,0,0.06);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--bg); }
+    .hero {
+      position: relative; overflow: hidden; min-height: 92vh; width: 100%; display: grid;
+      grid-template-columns: 1.05fr 0.95fr; align-items: center; background-color: var(--bg); isolation: isolate;
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 40px 40px; z-index: -2;
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 700px 600px at 30% 50%, rgba(248,249,251,0.95) 40%, transparent 100%);
+      z-index: -1;
+    }
+    .hero-content { padding: 3rem 2rem 3rem 6rem; max-width: 680px; }
+    .top-badge {
+      display: inline-flex; align-items: center; gap: 0.45rem; background: var(--primary-light); color: var(--primary);
+      border: 1px solid rgba(37,99,235,0.15); border-radius: 999px; padding: 0.3rem 0.85rem; font-size: 0.75rem;
+      font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .status-dot { font-size: 0.7rem; animation: pulse-dot 2s ease-in-out infinite; }
+    .hero-title {
+      margin-top: 1rem; font-family: 'Instrument Serif', serif; font-style: italic; font-size: 4rem;
+      letter-spacing: -0.03em; line-height: 1.1; color: var(--text);
+    }
+    .highlight-word { position: relative; display: inline-block; padding-bottom: 0.3rem; }
+    .highlight-word svg { position: absolute; left: -2px; bottom: -9px; width: 108%; height: 15px; pointer-events: none; }
+    .hero-subtitle {
+      margin-top: 1.25rem; max-width: 480px; font-size: 1.1rem; font-weight: 400; color: var(--text-2); line-height: 1.7;
+    }
+    .feature-pills { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 0.35rem; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 999px; padding: 0.3rem 0.8rem; font-size: 0.78rem; font-weight: 500; color: var(--text-2); box-shadow: var(--shadow-sm);
+    }
+    .pill .check { color: var(--success); font-weight: 700; }
+    .actions { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .btn {
+      border: none; border-radius: 10px; padding: 0.75rem 1.75rem; font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;
+    }
+    .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 0 0 0 rgba(37,99,235,0.4); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,0.3); }
+    .btn-ghost { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: #cbd5e1; background: #f8fafc; }
+    .trust-line, .upload-counter { margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-3); font-weight: 400; }
+    .upload-counter { margin-top: 0.45rem; }
+    .hero-visual { display: flex; justify-content: center; padding: 2rem; }
+    .mockup-card {
+      position: relative; width: 420px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+      box-shadow: var(--shadow-lg); padding: 1.5rem; transform: rotate(1.5deg); transition: transform 0.4s ease, box-shadow 0.4s ease;
+      animation: float 4s ease-in-out infinite;
+    }
+    .mockup-card:hover { animation: none; transform: rotate(0deg) translateY(-6px); box-shadow: 0 32px 64px rgba(0,0,0,0.12); }
+    .floating-badge {
+      position: absolute; top: -14px; right: -14px; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 999px; padding: 0.35rem 0.85rem; box-shadow: var(--shadow-md); font-size: 0.75rem;
+      font-weight: 600; color: var(--success); white-space: nowrap;
+    }
+    .mockup-header { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; }
+    .dots { display: inline-flex; gap: 6px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.red { background: #ff5f57; }
+    .dot.yellow { background: #febc2e; }
+    .dot.green { background: #28c840; }
+    .mockup-title { font-size: 0.78rem; font-weight: 600; color: var(--text-2); }
+    .upload-zone {
+      border: 2px dashed #cbd5e1; border-radius: 12px; background: #f8faff; text-align: center; padding: 1.25rem;
+    }
+    .upload-icon { font-size: 1.5rem; margin-bottom: 0.35rem; }
+    .upload-text { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .upload-subtext { font-size: 0.72rem; color: var(--text-3); margin-top: 0.2rem; }
+    .file-list { margin-top: 0.9rem; }
+    .file-row {
+      display: flex; align-items: center; gap: 0.75rem; margin-top: 0.6rem; padding: 0.65rem 0.75rem;
+      border-radius: 10px; border: 1px solid var(--border); background: var(--surface);
+    }
+    .file-badge {
+      font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.45rem; border-radius: 4px;
+      text-transform: uppercase; letter-spacing: 0.02em;
+    }
+    .pdf { background: #fee2e2; color: #dc2626; }
+    .csv { background: #dcfce7; color: #16a34a; }
+    .log { background: #fef9c3; color: #ca8a04; }
+    .file-name { flex: 1; font-size: 0.82rem; font-weight: 500; color: var(--text); }
+    .file-size { font-size: 0.75rem; color: var(--text-3); white-space: nowrap; }
+    .fade-up { opacity: 0; transform: translateY(20px); animation: fade-up 0.6s ease-out forwards; animation-delay: var(--d, 0s); }
+    .d-0 { --d: 0s; }
+    .d-1 { --d: 0.1s; }
+    .d-2 { --d: 0.2s; }
+    .d-3 { --d: 0.3s; }
+    .d-4 { --d: 0.4s; }
+    .d-5 { --d: 0.5s; }
+    .d-55 { --d: 0.55s; }
+    @keyframes pulse-dot { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+    @keyframes fade-up { to { opacity: 1; transform: translateY(0); } }
+    @keyframes float {
+      0%, 100% { transform: rotate(1.5deg) translateY(0px); }
+      50% { transform: rotate(1.5deg) translateY(-10px); }
+    }
+    @media (max-width: 767px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-content { padding: 3rem 1.5rem; }
+      .hero-title { font-size: 2.5rem; }
+      .hero-visual { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero" aria-label="File Upload Portal hero section">
+    <header class="hero-content">
+      <p class="top-badge fade-up d-0">
+        <span class="status-dot" aria-hidden="true">●</span>
+        <span>Secure File Management</span>
+      </p>
+
+      <h1 class="hero-title fade-up d-1">
+        Upload, manage<br />
+        and share <span class="highlight-word">files.
+          <svg viewBox="0 0 240 24" aria-hidden="true" focusable="false">
+            <path d="M4 14 C 46 26, 124 2, 236 13" stroke="#2563eb" stroke-width="3" fill="none" />
+          </svg>
+        </span>
+      </h1>
+
+      <p class="hero-subtitle fade-up d-2">
+        A secure portal for your team's documents. Upload with confidence, manage with ease, access from anywhere.
+      </p>
+
+      <div class="feature-pills fade-up d-3" aria-label="Key features">
+        <span class="pill"><span class="check">✓</span>10MB limit</span>
+        <span class="pill"><span class="check">✓</span>SHA-256 verified</span>
+        <span class="pill"><span class="check">✓</span>PDF, CSV, ZIP, LOG</span>
+      </div>
+
+      <nav class="actions fade-up d-4" aria-label="Primary actions">
+        <button id="startBtn" class="btn btn-primary" type="button">Get Started →</button>
+        <button id="dashboardBtn" class="btn btn-ghost" type="button">View Dashboard</button>
+      </nav>
+
+      <p class="trust-line fade-up d-5">🔒 Files are stored securely and never shared.</p>
+      <p class="upload-counter fade-up d-55"><span id="fileCount">0</span> files uploaded</p>
+    </header>
+
+    <aside class="hero-visual" aria-hidden="true">
+      <div class="mockup-card">
+        <span class="floating-badge">✓ 3 files ready</span>
+
+        <div class="mockup-header">
+          <div class="dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <span class="mockup-title">File Upload Portal</span>
+        </div>
+
+        <div class="upload-zone">
+          <div class="upload-icon">📁</div>
+          <p class="upload-text">Drop files here</p>
+          <p class="upload-subtext">PDF, CSV, ZIP, LOG · max 10MB</p>
+        </div>
+
+        <div class="file-list">
+          <div class="file-row">
+            <span class="file-badge pdf">🔴 PDF</span>
+            <span class="file-name">report_q4_2025.pdf</span>
+            <span class="file-size">2.1 MB</span>
+          </div>
+          <div class="file-row">
+            <span class="file-badge csv">🟢 CSV</span>
+            <span class="file-name">dataset_volve.csv</span>
+            <span class="file-size">840 KB</span>
+          </div>
+          <div class="file-row">
+            <span class="file-badge log">🟡 LOG</span>
+            <span class="file-name">app_debug.log</span>
+            <span class="file-size">128 KB</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const dashboardBtn = document.getElementById('dashboardBtn');
+    const fileCountEl = document.getElementById('fileCount');
+
+    startBtn.addEventListener('click', () => {
+      window.location.href = '/upload-page';
+    });
+
+    dashboardBtn.addEventListener('click', () => {
+      window.location.href = '/dashboard';
+    });
+
+    const target = 1284;
+    const duration = 1400;
+    const startTime = performance.now();
+
+    function animateCounter(now) {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const value = Math.floor(progress * target);
+      fileCountEl.textContent = value.toLocaleString();
+
+      if (progress < 1) {
+        requestAnimationFrame(animateCounter);
+      }
+    }
+
+    requestAnimationFrame(animateCounter);
+  </script>
+</body>
+</html>
